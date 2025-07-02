@@ -617,9 +617,19 @@ function updateSavedCountText() {
 
 function openOnYouTube(artist, song) {
     const query = encodeURIComponent(`${artist} ${song}`);
-    const youtubeURL = `https://www.youtube.com/results?search_query=${query}&utm_source=sharevibes&utm_medium=discovery&utm_campaign=vibe_listen`;
+    // URL CORRETA para a busca no YouTube
+    const youtubeURL = `https://www.youtube.com/results?search_query=${query}`;
+
+    // O resto da função para rastrear o clique
     const songObj = allSongs.find(s => s.artist === artist && s.song === song);
-    if (songObj) trackYouTubeClick(songObj);
+    if (songObj) {
+        // A função de rastreamento do Google Analytics que já tínhamos
+        gtag('event', 'youtube_listen', {
+            'song_title': song.song,
+            'artist': song.artist,
+            'source': 'vibes_discovery'
+        });
+    }
     window.open(youtubeURL, '_blank');
 }
 
