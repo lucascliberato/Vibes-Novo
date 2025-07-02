@@ -858,7 +858,6 @@ function renderSavedVibes() {
             </div>
             <div class="saved-vibe-context">"${song.context}"</div>
             <div class="saved-vibe-actions">
-                <button class="vote-btn" onclick="openOnYouTube('${song.artist.replace(/'/g, "\\'")}', '${song.song.replace(/'/g, "\\'")}')">Listen</button>
                 <button class="vote-btn" onclick="unsaveVibe(${song.id})" style="background: #ef4444; color: white;">Remove</button>
             </div>
         </div>`;
