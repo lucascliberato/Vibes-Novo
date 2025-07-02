@@ -617,17 +617,17 @@ function updateSavedCountText() {
 
 function openOnYouTube(artist, song) {
     const query = encodeURIComponent(`${artist} ${song}`);
-    // CORREÇÃO: Esta é a URL de busca correta e funcional do YouTube.
-    const youtubeURL = `https://www.youtube.com/results?search_query=${query}`;
+    // CORREÇÃO: Esta é a URL de busca correta, baseada na sua v1.
+    const youtubeURL = `https://www.youtube.com/results?search_query=${query}&utm_source=sharevibes&utm_medium=discovery&utm_campaign=vibe_listen`;
 
-    // A lógica para rastrear o clique (se o Google Analytics estiver configurado)
-    if (typeof gtag !== 'undefined') {
-        gtag('event', 'youtube_listen', {
-            'song_title': song,
-            'artist': artist,
-            'source': 'vibes_discovery'
-        });
+    // Tenta rastrear o clique se a função gtag existir
+    if (typeof trackYouTubeClick !== 'undefined') {
+        const songObj = allSongs.find(s => s.artist === artist && s.song === song);
+        if (songObj) {
+            trackYouTubeClick(songObj);
+        }
     }
+
     // Abre o link em uma nova aba
     window.open(youtubeURL, '_blank');
 }
@@ -858,7 +858,7 @@ function renderSavedVibes() {
             </div>
             <div class="saved-vibe-context">"${song.context}"</div>
             <div class="saved-vibe-actions">
-                <button class="vote-btn" onclick="openOnYouTube('${song.artist.replace(/'/g, "\\'")}', '${song.song.replace(/'/g, "\\'")}')">Listen</button>
+                <button class="vote-btn youtube-link" data-artist="${song.artist}" data-song="${song.song}">Listen</button>
                 <button class="vote-btn" onclick="unsaveVibe(${song.id})" style="background: #ef4444; color: white;">Remove</button>
             </div>
         </div>`;
