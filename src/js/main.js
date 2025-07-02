@@ -615,27 +615,20 @@ function updateSavedCountText() {
     }
 }
 
-// VERSÃO CORRIGIDA - Cole esta função no seu main.js
+// VERSÃO FINAL E CORRIGIDA - Substitua pela última vez
 function openOnYouTube(artist, song) {
-  // 1. Cria o termo de busca juntando artista e música
+  // Verifica se os dados da música existem para evitar erros
+  if (!artist || !song) {
+    console.error("Dados da música ausentes. Não é possível redirecionar.");
+    return; // Interrompe a função
+  }
+
+  // Monta a URL de busca do YouTube
   const query = encodeURIComponent(`${artist} ${song}`);
-  
-  // 2. Monta a URL de busca correta do YouTube
   const youtubeURL = `https://www.youtube.com/results?search_query=\${query}&utm_source=sharevibes&utm_medium=discovery&utm_campaign=vibe_listen`;
 
-  // 3. (Opcional) Linha para verificar o link no console do navegador antes de redirecionar
-  console.log(`Tentando abrir: ${youtubeURL}`);
-
-  // 4. Abre o link do YouTube em uma nova aba
+  // Abre a URL em uma nova aba
   window.open(youtubeURL, '_blank');
-
-  // As linhas abaixo para rastrear o clique podem ser mantidas se você as utiliza
-  const songObj = allSongs.find(s => s.artist === artist && s.song === song);
-  if (songObj) {
-    // Se a função trackYouTubeClick existir, ela será chamada aqui.
-    // trackYouTubeClick(songObj);
-  }
-}
 }
 
 function loadPersistedData() {
