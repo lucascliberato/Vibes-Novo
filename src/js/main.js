@@ -615,21 +615,27 @@ function updateSavedCountText() {
     }
 }
 
+// VERSÃO CORRIGIDA - Cole esta função no seu main.js
 function openOnYouTube(artist, song) {
-    const query = encodeURIComponent(`${artist} ${song}`);
-    // CORREÇÃO: Esta é a URL de busca correta, baseada na sua v1.
-    const youtubeURL = `https://www.youtube.com/results?search_query=${query}&utm_source=sharevibes&utm_medium=discovery&utm_campaign=vibe_listen`;
+  // 1. Cria o termo de busca juntando artista e música
+  const query = encodeURIComponent(`${artist} ${song}`);
+  
+  // 2. Monta a URL de busca correta do YouTube
+  const youtubeURL = `https://www.youtube.com/results?search_query=\${query}&utm_source=sharevibes&utm_medium=discovery&utm_campaign=vibe_listen`;
 
-    // Tenta rastrear o clique se a função gtag existir
-    if (typeof trackYouTubeClick !== 'undefined') {
-        const songObj = allSongs.find(s => s.artist === artist && s.song === song);
-        if (songObj) {
-            trackYouTubeClick(songObj);
-        }
-    }
+  // 3. (Opcional) Linha para verificar o link no console do navegador antes de redirecionar
+  console.log(`Tentando abrir: ${youtubeURL}`);
 
-    // Abre o link em uma nova aba
-    window.open(youtubeURL, '_blank');
+  // 4. Abre o link do YouTube em uma nova aba
+  window.open(youtubeURL, '_blank');
+
+  // As linhas abaixo para rastrear o clique podem ser mantidas se você as utiliza
+  const songObj = allSongs.find(s => s.artist === artist && s.song === song);
+  if (songObj) {
+    // Se a função trackYouTubeClick existir, ela será chamada aqui.
+    // trackYouTubeClick(songObj);
+  }
+}
 }
 
 function loadPersistedData() {
@@ -858,7 +864,7 @@ function renderSavedVibes() {
             </div>
             <div class="saved-vibe-context">"${song.context}"</div>
             <div class="saved-vibe-actions">
-                <button class="vote-btn youtube-link" data-artist="${song.artist}" data-song="${song.song}">Listen</button>
+                <button class="vote-btn" onclick="openOnYouTube('${song.artist.replace(/'/g, "\\'")}', '${song.song.replace(/'/g, "\\'")}')">Listen</button>
                 <button class="vote-btn" onclick="unsaveVibe(${song.id})" style="background: #ef4444; color: white;">Remove</button>
             </div>
         </div>`;
