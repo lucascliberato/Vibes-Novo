@@ -32,9 +32,9 @@ function toggleTheme() {
     showToast(themeText);
 }
 
+// VERSÃO CORRIGIDA E SEGURA DA FUNÇÃO toggleMenu
 function toggleMenu(mode) {
     if (!['discovery', 'song'].includes(mode)) return;
-
     currentMenuMode = mode;
     try {
         localStorage.setItem('vibes_menu_mode', mode);
@@ -49,24 +49,25 @@ function toggleMenu(mode) {
     const discoveryStepContainer = document.getElementById('discoveryStepContainer');
     const originalDiscoveryContainer = document.getElementById('originalDiscoveryContainer');
 
-    discoveryBtn.classList.remove('active');
-    songBtn.classList.remove('active');
+    // ---- A MÁGICA ESTÁ AQUI: Verificamos se os botões existem antes de usá-los ----
+    if (discoveryBtn) discoveryBtn.classList.remove('active');
+    if (songBtn) songBtn.classList.remove('active');
 
     if (mode === 'discovery') {
-        discoveryBtn.classList.add('active');
+        if (discoveryBtn) discoveryBtn.classList.add('active');
         if (actionTabs) actionTabs.style.display = 'none';
         if (discoverSection) discoverSection.style.display = 'block';
         if (discoveryStepContainer) discoveryStepContainer.style.display = 'block';
         if (originalDiscoveryContainer) originalDiscoveryContainer.style.display = 'none';
-        showToast('Discovery mode activated 🙋');
+        showToast('Discovery mode activated');
     } else { // mode === 'song'
-        songBtn.classList.add('active');
+        if (songBtn) songBtn.classList.add('active');
         if (actionTabs) actionTabs.style.display = 'flex';
         if (discoverSection) discoverSection.style.display = 'block';
         if (discoveryStepContainer) discoveryStepContainer.style.display = 'none';
         if (originalDiscoveryContainer) originalDiscoveryContainer.style.display = 'block';
-        showDiscover(); 
-        showToast('Song mode activated 🤘');
+        showDiscover(); // A função showDiscover() também precisa ser segura
+        showToast('Song mode activated');
     }
 }
 
