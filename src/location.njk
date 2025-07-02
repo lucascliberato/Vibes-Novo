@@ -1,0 +1,30 @@
+---
+pagination:
+  data: locations
+  size: 1
+  alias: locationName
+permalink: "/location/{{ locationName | slugify }}/index.html"
+layout: layout.njk
+title: "Vibes from {{ locationName }}"
+---
+
+<div class="song-display" style="text-align: left; padding: 2rem 3rem;">
+    <h1 style="font-size: 2.5rem; margin-bottom: 2rem;">Vibes from {{ locationName }}</h1>
+    <ul style="list-style: none; padding: 0;">
+        {%- for song in songs.allSongs -%}
+            {%- if song.location == locationName -%}
+                <li style="margin-bottom: 1.5rem;">
+                    <a href="/song/{{ song.artist | slugify }}/{{ song.song | slugify }}/" style="font-size: 1.25rem; text-decoration: none; color: var(--text-primary);">
+                        {{ song.song }}
+                    </a>
+                    <div style="font-size: 1rem; color: var(--text-secondary);">by 
+                        <a href="/artist/{{ song.artist | slugify }}/" style="text-decoration: underline; color: var(--text-secondary);">{{ song.artist }}</a>
+                    </div>
+                </li>
+            {%- endif -%}
+        {%- endfor -%}
+    </ul>
+    <p style="margin-top: 3rem;">
+        <a href="/" style="color: var(--text-secondary); text-decoration: none; font-weight: 500;">← Back to Home</a>
+    </p>
+</div>

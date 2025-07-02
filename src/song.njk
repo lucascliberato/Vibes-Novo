@@ -1,0 +1,42 @@
+---
+pagination:
+  data: songs.allSongs
+  size: 1
+  alias: song
+permalink: "/song/{{ song.artist | slugify }}/{{ song.song | slugify }}/index.html"
+layout: layout.njk
+title: "{{ song.song }} by {{ song.artist }}"
+tags: songs
+---
+
+<div class="song-display" style="margin-top: 3rem;">
+    <h3 style="margin-bottom: 1.5rem;">🎵 Vibe Discovered</h3>
+    <div class="discovered-song-layout">
+        <div class="discovered-album-cover">🎵</div>
+        <div class="discovered-song-info">
+            <div class="discovered-song-title">{{ song.song }}</div>
+            <div class="discovered-song-artist">
+                <a href="/artist/{{ song.artist | slugify }}/" style="text-decoration: none; color: inherit;">{{ song.artist }}</a>
+            </div>
+            <div class="discovered-by">
+    Vibed by {{ song.name }} from <a href="/location/{{ song.location | slugify }}/" style="color: inherit;">{{ song.location }}</a>
+</div>
+        </div>
+    </div>
+    <div class="song-context">"{{ song.context }}"</div>
+    <div class="song-actions">
+        <button class="vote-btn" onclick="voteForSong({{ song.id }})">❤️ Vibe this ({{ song.votes }})</button>
+        <button class="story-card-btn" onclick="showStoryCard({{ song.id }})" style="background: linear-gradient(135deg, #a238ff, #ff006e); color: white; border: none;">🌊 Share this Vibe</button>
+        <button class="reply-btn" disabled>🎶 Reply with Song <span class="soon-tag">Soon</span></button>
+    </div>
+    <p style="font-size: 0.75rem; color: #6b7280; margin-top: 1rem; display: flex; align-items: center; justify-content: center; gap: 0.75rem; flex-wrap: wrap;">
+        <a href="/" style="color: #a238ff; text-decoration: underline; cursor: pointer; font-size: 0.75rem;">Explore a new vibe</a>
+        <span style="color: #d1d5db;">•</span>
+        <button onclick="saveVibe({{ song.id }})" style="background: none; border: none; color: #10b981; text-decoration: underline; cursor: pointer; font-size: 0.75rem;">Save this vibe</button>
+        <span style="color: #d1d5db;">•</span>
+        <a href="#" onclick="openOnYouTube('{{ song.artist | replace("'", "\\'") }}', '{{ song.song | replace("'", "\\'") }}'); return false;" style="color: #ef4444; text-decoration: none; font-size: 0.75rem; display: flex; align-items: center; gap: 0.25rem;">▶ Listen on YouTube</a>
+    </p>
+    <p style="text-align: center; margin-top: 2rem;">
+        <a href="/" style="color: var(--text-secondary); text-decoration: none; font-weight: 500;">← Back</a>
+    </p>
+</div>

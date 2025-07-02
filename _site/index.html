@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discover Music Through Human Stories | Vibes</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='url(%23g)'/%3E%3Cdefs%3E%3ClinearGradient id='g'%3E%3Cstop offset='0%25' stop-color='%23a238ff'/%3E%3Cstop offset='100%25' stop-color='%23ff006e'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ctext x='50' y='65' text-anchor='middle' font-size='35'%3E%3C/text%3E%3C/svg%3E">
+    <link rel="stylesheet" href="/css/style.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XH283198NN"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XH283198NN');
+    </script>
+</head>
+<body>
+    <div class="container">
+        
+<div class="sidebar-menu">
+    <div class="menu-toggle-container">
+        <button class="menu-icon-btn discovery" onclick="toggleMenu('discovery')" aria-label="Discovery mode">
+            <span class="menu-icon">🙋</span>
+        </button>
+        <button class="menu-icon-btn song" onclick="toggleMenu('song')" aria-label="Song mode">
+            <span class="menu-icon">🤘</span>
+        </button>
+    </div>
+</div>
+
+<div class="header">
+    <div class="header-left">
+        <div class="logo">
+            <div style="width: 24px; height: 24px; background: linear-gradient(135deg, #a238ff, #ff006e); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                <span style="color: white; font-size: 12px; font-weight: bold;">🎧</span>
+            </div>
+            <h1>Vibes</h1>
+        </div>
+    </div>
+    <div class="header-right">
+        <div class="tagline">
+            <p>Discover music through human stories, not algorithms</p>
+        </div>
+        <button class="theme-toggle dark" onclick="toggleTheme()" aria-label="Toggle dark mode">
+            <span class="theme-icon sun-icon">☀️</span>
+            <span class="theme-icon moon-icon">🌙</span>
+        </button>
+    </div>
+</div>
+
+<a href="/song/iron-and-wine/flightless-bird/" style="text-decoration: none; color: inherit;">
+    <div class="featured-song">
+        <div class="featured-header">
+            <div class="featured-title">
+                <span>🏆</span>
+                <div>
+                    <h2>Song of the Week</h2>
+                    <p>Most loved by the community</p>
+                </div>
+            </div>
+            <div class="featured-votes">89 ❤ <span style="font-size: 0.7rem; opacity: 0.8; margin-left: 0.25rem;">LIVE</span></div>
+        </div>
+        <div class="featured-content">
+            <div class="featured-album-cover">🎵</div>
+            <div class="featured-song-details">
+                <div class="featured-song-title">Flightless Bird, American Mouth</div>
+                <div class="featured-song-artist">Iron & Wine</div>
+                <div class="featured-context">"This song makes me feel like I'm in a coming-of-age indie movie. Perfect for rainy days and deep thoughts. 🌧"</div>
+            </div>
+        </div>
+        <div class="featured-footer">
+            <span id="weeklyTimer">Calculating...</span>
+        </div>
+    </div>
+</a>
+
+<div class="stats-grid">
+    <div class="stat-card">
+        <div class="stat-number" id="totalSongs">16</div>
+        <div class="stat-label">Songs Vibed</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-number" id="totalDiscovered">0</div>
+        <div class="stat-label">Songs Discovered</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-number" id="totalVotes">201</div>
+        <div class="stat-label">Vibes Given</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-number" id="totalSaved">0</div>
+        <div class="stat-label">Vibes Saved</div>
+    </div>
+</div>
+
+<div class="action-tabs" id="actionTabs">
+    <button class="tab-btn" onclick="showDiscover()">
+        <span>Discover</span>
+    </button>
+    <button class="tab-btn" onclick="showVibe()">
+        <span>Send Vibe</span>
+    </button>
+    <button class="tab-btn" onclick="showSaved()">
+        <span>My Vibes</span>
+    </button>
+</div>
+
+<div class="section main-content-section" id="discoverSection">
+    <div class="discovery-step-container" id="discoveryStepContainer">
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-step active" id="step1Progress"><div class="step-number">1</div><div class="step-label">Vibe</div></div>
+                <div class="progress-line" id="progressLine"></div>
+                <div class="progress-step" id="step2Progress"><div class="step-number">2</div><div class="step-label">Genre</div></div>
+            </div>
+        </div>
+        <div class="discovery-step active" id="step1">
+            <div class="step-header"><p>Choose the mood that matches your current state</p></div>
+            <div class="vibe-grid">
+                <div class="vibe-card" data-vibe="happy" onclick="selectVibe('happy')"><div class="vibe-icon">😊</div><div class="vibe-name">Happy</div></div>
+                <div class="vibe-card" data-vibe="sad" onclick="selectVibe('sad')"><div class="vibe-icon">😢</div><div class="vibe-name">Sad</div></div>
+                <div class="vibe-card" data-vibe="love" onclick="selectVibe('love')"><div class="vibe-icon">💕</div><div class="vibe-name">Love</div></div>
+                <div class="vibe-card" data-vibe="energy" onclick="selectVibe('energy')"><div class="vibe-icon">⚡</div><div class="vibe-name">Energy</div></div>
+                <div class="vibe-card" data-vibe="workout" onclick="selectVibe('workout')"><div class="vibe-icon">💪</div><div class="vibe-name">Workout</div></div>
+                <div class="vibe-card" data-vibe="travelling" onclick="selectVibe('travelling')"><div class="vibe-icon">✈️</div><div class="vibe-name">Travelling</div></div>
+                <div class="vibe-card custom" onclick="addCustomVibe()"><div class="vibe-icon">➕</div><div class="vibe-name">Add your own</div></div>
+            </div>
+            <div class="step-actions"><button class="btn-primary step-btn" id="step1Btn" onclick="goToStep2()" disabled>I Want This</button></div>
+        </div>
+        <div class="discovery-step" id="step2">
+             <div class="step-header"><p>Select all that apply to get personalized recommendations</p></div>
+             <div class="genre-list">
+                <div class="genre-option" onclick="toggleGenre('rock')" data-genre="rock"><div class="genre-checkbox"><input type="checkbox" id="rock" name="genres" value="rock"><div class="checkbox-circle"></div><span class="genre-name">Rock</span></div></div>
+                <div class="genre-option" onclick="toggleGenre('pop')" data-genre="pop"><div class="genre-checkbox"><input type="checkbox" id="pop" name="genres" value="pop"><div class="checkbox-circle"></div><span class="genre-name">Pop</span></div></div>
+                <div class="genre-option" onclick="toggleGenre('metal')" data-genre="metal"><div class="genre-checkbox"><input type="checkbox" id="metal" name="genres" value="metal"><div class="checkbox-circle"></div><span class="genre-name">Metal</span></div></div>
+                <div class="genre-option" onclick="toggleGenre('country')" data-genre="country"><div class="genre-checkbox"><input type="checkbox" id="country" name="genres" value="country"><div class="checkbox-circle"></div><span class="genre-name">Country</span></div></div>
+                <div class="genre-option" onclick="toggleGenre('indie')" data-genre="indie"><div class="genre-checkbox"><input type="checkbox" id="indie" name="genres" value="indie"><div class="checkbox-circle"></div><span class="genre-name">Indie</span></div></div>
+                <div class="genre-option" onclick="toggleGenre('grunge')" data-genre="grunge"><div class="genre-checkbox"><input type="checkbox" id="grunge" name="genres" value="grunge"><div class="checkbox-circle"></div><span class="genre-name">Grunge</span></div></div>
+                <div class="genre-option custom" onclick="addCustomGenre()"><div class="genre-checkbox"><div class="add-icon">➕</div><span class="genre-name">Add your own</span></div></div>
+             </div>
+             <div class="step-actions">
+                <button class="btn-secondary step-btn back-btn" onclick="goBackToStep1()">← Back</button>
+                <button class="btn-primary step-btn" id="step2Btn" onclick="getRecommendations()" disabled>I Want Recs</button>
+             </div>
+        </div>
+    </div>
+    <div class="original-discovery-container" id="originalDiscoveryContainer">
+        <h2>🎧 Discover New Vibes</h2>
+        <p>Click on a bottle to discover a song recommendation from our community.</p>
+        <div class="bottles-grid" id="bottleContainer"><a href="/song/phoebe-bridgers/motion-sickness/" class="bottle-link">
+        <div class="bottle">
+            🎵
+        </div>
+    </a><a href="/song/iron-and-wine/flightless-bird/" class="bottle-link">
+        <div class="bottle">
+            💿
+        </div>
+    </a><a href="/song/clairo/sofia/" class="bottle-link">
+        <div class="bottle">
+            🎸
+        </div>
+    </a><a href="/song/frank-ocean/pink-matter/" class="bottle-link">
+        <div class="bottle">
+            🎤
+        </div>
+    </a><a href="/song/mitski/first-love-late-spring/" class="bottle-link">
+        <div class="bottle">
+            🎧
+        </div>
+    </a><a href="/song/mac-miller/woods/" class="bottle-link">
+        <div class="bottle">
+            📻
+        </div>
+    </a><a href="/song/tyler-the-creator/earfquake/" class="bottle-link">
+        <div class="bottle">
+            💿
+        </div>
+    </a><a href="/song/lorde/ribs/" class="bottle-link">
+        <div class="bottle">
+            🎸
+        </div>
+    </a><a href="/song/rex-orange-county/loving-is-easy/" class="bottle-link">
+        <div class="bottle">
+            🎹
+        </div>
+    </a></div>
+        <div class="song-display empty" id="songDisplay">
+            <p>Select a bottle above to discover a hidden musical gem...</p>
+        </div>
+    </div>
+</div>
+
+<div class="section main-content-section" id="vibeSection">
+    <h2>🎵 Send Your Vibe</h2>
+    <div id="demandInsights" class="demand-insights">
+        <h3>People are starving for music recs!</h3>
+        <p id="demandStats">5+ looking for workout vibes in pop. 10+ looking for travelling vibes in rock.</p>
+        <p>Share a song that matches the mood!</p>
+    </div>
+    <form class="song-form" id="vibeForm" name="vibe-song" method="POST" data-netlify="true">
+        <input type="hidden" name="form-name" value="vibe-song" />
+        <div class="form-row"><div class="form-group"><label class="form-label">Artist</label><input type="text" name="artist" id="artistInput" class="form-input" placeholder="e.g. Phoebe Bridgers" required></div><div class="form-group"><label class="form-label">Song Title</label><input type="text" name="song" id="songInput" class="form-input" placeholder="e.g. Motion Sickness" required></div></div>
+        <div class="form-row"><div class="form-group"><label class="form-label">Your Name</label><input type="text" name="name" id="nameInput" class="form-input" placeholder="e.g. Alex" required></div><div class="form-group"><label class="form-label">Your Location</label><input type="text" name="location" id="locationInput" class="form-input" placeholder="e.g. São Paulo, Brazil"></div></div>
+        <div class="form-row"><div class="form-group email-field"><label class="form-label">Email (Optional)</label><input type="email" name="email" id="emailInput" class="form-input email-input" placeholder="Get exclusive access to new features first"><div class="email-benefits">Early access to replies, playlists, and premium features</div></div></div>
+        <label class="form-label">Why does this song hit different?</label>
+        <textarea name="context" id="contextInput" class="context-textarea" placeholder="Share the story... When did you first hear it? What memory does it bring back?" maxlength="280" required></textarea>
+        <div class="char-count"><span id="charCount">0</span>/280 characters</div><br>
+        <button type="submit" class="btn-primary">Send the Vibe</button>
+    </form>
+</div>
+
+<div class="section main-content-section" id="savedSection">
+    <h2>💫 My Saved Vibes</h2>
+    <p>Your personal collection of musical discoveries that hit different. <span id="savedCountText">Free tier: save up to 3 vibes</span></p>
+    <div id="savedVibesContainer">
+        <div style="text-align: center; padding: 3rem 1rem; color: #6b7280;"><p style="font-size: 1.125rem; margin-bottom: 0.5rem;">Your vibe collection awaits</p><p style="font-size: 0.875rem; margin-bottom: 1rem;">Discover and save vibes that speak to your soul!</p><p style="font-size: 0.75rem; margin-bottom: 1.5rem;"><a href="#" onclick="showEmailGate(); return false;" style="color: #a238ff; text-decoration: underline;">Get lifetime free access to this feature</a></p><button onclick="showDiscover()" style="padding: 0.75rem 1.5rem; background: #a238ff; color: white; border: none; border-radius: 25px; cursor: pointer; font-weight: 500;">Discover Vibes</button></div>
+    </div>
+    <div id="emailGate" class="email-gate" style="display: none;">
+        <h3>✅ Unlock Unlimited Saves</h3>
+        <p>Choose your path to unlock unlimited vibe saves and early access to new features!</p>
+        <div class="unlock-options"><div class="unlock-option" id="emailOption" onclick="selectUnlockMethod('email')"><div class="unlock-option-icon">📧</div><div class="unlock-option-title">Email Access</div><div class="unlock-option-desc">Instant unlock</div></div><div class="unlock-option" id="reviewOption" onclick="selectUnlockMethod('review')"><div class="unlock-option-icon">🌟</div><div class="unlock-option-title">Social Review</div><div class="unlock-option-desc">Verified in 24h</div></div></div>
+        <div class="email-gate-form" id="emailForm"><input type="email" class="email-gate-input" placeholder="your@email.com" id="unlockEmail"><button class="email-gate-btn" onclick="unlockUnlimited()">Unlock Now</button></div>
+        <form class="review-form" id="reviewForm" name="social-review" method="POST" data-netlify="true">
+            <input type="hidden" name="form-name" value="social-review" />
+            <h4 style="color: #374151; margin-bottom: 1rem;">📱 Share Your Vibes Experience</h4>
+            <p style="font-size: 0.875rem; color: #6b7280; margin-bottom: 1rem;">1. Post about Vibes on any social platform<br>2. Tag @sharevibesapp or use #sharevibesapp<br>3. Paste your post link below</p>
+            <input type="url" name="post_link" class="review-link-input" placeholder="Paste your post link here..." id="reviewLink" required>
+            <input type="email" name="email" class="review-link-input" placeholder="Your email (optional, for updates)" id="reviewEmail">
+            <button type="submit" class="review-submit-btn" onclick="submitReview(event)">Submit Review</button>
+        </form>
+        <div id="reviewPending" class="review-pending" style="display: none;"><h4>⏳ Review Under Verification</h4><p style="margin: 0.5rem 0;">Thanks for sharing! We're verifying your post and will unlock unlimited saves within 24 hours.</p><p style="font-size: 0.75rem; opacity: 0.9;">Check your email for updates!</p></div>
+        <div id="reviewApproved" class="review-approved" style="display: none;"><h4>🎉 Review Approved!</h4><p style="margin: 0;">Unlimited saves unlocked! Thanks for spreading the vibes!</p></div>
+    </div>
+</div>
+
+        <div class="footer">
+            <p>🎵 Vibes • Discover music through human stories 🌍</p>
+            <p style="margin-top: 0.5rem; opacity: 0.7;">Created by <a href="mailto:lucasoliberato@gmail.com" style="color: #a238ff; text-decoration: none;">Lucas C. Liberato</a></p>
+            <p style="margin-top: 0.25rem; opacity: 0.6; font-size: 0.875rem;">Copyright © 2025 - All rights reserved</p>
+            <p id="userIndicator" style="margin-top: 0.75rem; opacity: 0.7; font-size: 0.75rem; color: #a238ff;"></p>
+            <p style="margin-top: 1rem; opacity: 0.5; font-size: 0.75rem;">
+                <button onclick="resetAllData()" style="background: none; border: 1px solid #e5e7eb; color: #9ca3af; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.75rem; cursor: pointer;">Reset Demo Data</button>
+                <span style="margin-left: 1rem; opacity: 0.6;">Note: Data saves per user</span>
+            </p>
+        </div>
+    </div>
+
+    <script>
+      const allSongs = [{"artist":"Phoebe Bridgers","song":"Motion Sickness","context":"3am overthinking sessions 🌙","name":"Emma","location":"Portland","votes":0,"id":1,"discovered":false,"genres":["Indie","Rock"]},{"artist":"Iron & Wine","song":"Flightless Bird","context":"Coming-of-age indie movie vibes 🌧","name":"Lucas","location":"São Paulo","votes":89,"id":2,"discovered":false,"genres":["Indie","Folk"]},{"artist":"Clairo","song":"Sofia","context":"Bedroom pop perfection ✨","name":"Sophie","location":"London","votes":12,"id":3,"discovered":false,"genres":["Indie","Pop"]},{"artist":"Frank Ocean","song":"Pink Matter","context":"2am thoughts that hit different 💭","name":"Jordan","location":"LA","votes":23,"id":4,"discovered":false,"genres":["R&B","Alternative"]},{"artist":"Mitski","song":"First Love / Late Spring","context":"Crying aesthetically 🌸","name":"Maya","location":"Tokyo","votes":18,"id":5,"discovered":false,"genres":["Indie","Alternative"]},{"artist":"Mac Miller","song":"Woods","context":"60 seconds of pure introspection 🌲","name":"Alex","location":"Brooklyn","votes":15,"id":6,"discovered":false,"genres":["Hip-Hop","R&B"]},{"artist":"Tyler, The Creator","song":"EARFQUAKE","context":"Sunset driving with no destination 🌅","name":"Carlos","location":"Mexico City","votes":31,"id":7,"discovered":false,"genres":["Hip-Hop","Pop"]},{"artist":"Lorde","song":"Ribs","context":"Growing up anxiety sounds beautiful ⏰","name":"Zoe","location":"Auckland","votes":27,"id":8,"discovered":false,"genres":["Pop","Electronic"]},{"artist":"Rex Orange County","song":"Loving Is Easy","context":"Makes me believe in love again 💕","name":"Riley","location":"Manchester","votes":14,"id":9,"discovered":false,"genres":["Indie","Pop"]},{"artist":"Boy Pablo","song":"Everytime","context":"Summer nostalgia in 3 minutes ☀","name":"Diego","location":"Barcelona","votes":8,"id":10,"discovered":false,"genres":["Indie","Pop"]},{"artist":"Kali Uchis","song":"telepatía","context":"Dreamy bilingual perfection 🌺","name":"Camila","location":"Miami","votes":21,"id":11,"discovered":false,"genres":["R&B","Pop"]},{"artist":"Daniel Caesar","song":"Best Part","context":"Love song that doesn't make me cringe 💝","name":"Marcus","location":"Toronto","votes":19,"id":12,"discovered":false,"genres":["R&B","Soul"]},{"artist":"Brockhampton","song":"SUGAR","context":"Chaos and harmony in perfect balance 🍯","name":"Kai","location":"Austin","votes":13,"id":13,"discovered":false,"genres":["Hip-Hop","Alternative"]},{"artist":"Still Woozy","song":"Goodie Bag","context":"Feels like floating on clouds ☁","name":"Luna","location":"San Francisco","votes":16,"id":14,"discovered":false,"genres":["Indie","Psychedelic"]},{"artist":"Omar Apollo","song":"Ugotme","context":"Bilingual heartbreak hits different 💔","name":"Santiago","location":"Phoenix","votes":11,"id":15,"discovered":false,"genres":["R&B","Funk"]},{"artist":"Cuco","song":"Lo Que Siento","context":"Bedroom pop with abuela's approval 🏠","name":"Valentina","location":"Los Angeles","votes":9,"id":16,"discovered":false,"genres":["Indie","Dream Pop"]}];
+    </script>
+    <script src="/js/main.js"></script>
+    <div class="success-toast" id="successToast"></div>
+</body>
+</html>

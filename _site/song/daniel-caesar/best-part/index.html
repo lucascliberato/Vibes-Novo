@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ song.song }} by {{ song.artist }} | Vibes</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='url(%23g)'/%3E%3Cdefs%3E%3ClinearGradient id='g'%3E%3Cstop offset='0%25' stop-color='%23a238ff'/%3E%3Cstop offset='100%25' stop-color='%23ff006e'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ctext x='50' y='65' text-anchor='middle' font-size='35'%3E%3C/text%3E%3C/svg%3E">
+    <link rel="stylesheet" href="/css/style.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XH283198NN"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XH283198NN');
+    </script>
+</head>
+<body>
+    <div class="container">
+        
+<div class="song-display" style="margin-top: 3rem;">
+    <h3 style="margin-bottom: 1.5rem;">🎵 Vibe Discovered</h3>
+    <div class="discovered-song-layout">
+        <div class="discovered-album-cover">🎵</div>
+        <div class="discovered-song-info">
+            <div class="discovered-song-title">Best Part</div>
+            <div class="discovered-song-artist">
+                <a href="/artist/daniel-caesar/" style="text-decoration: none; color: inherit;">Daniel Caesar</a>
+            </div>
+            <div class="discovered-by">
+    Vibed by Marcus from <a href="/location/toronto/" style="color: inherit;">Toronto</a>
+</div>
+        </div>
+    </div>
+    <div class="song-context">"Love song that doesn&#39;t make me cringe 💝"</div>
+    <div class="song-actions">
+        <button class="vote-btn" onclick="voteForSong(12)">❤️ Vibe this (19)</button>
+        <button class="story-card-btn" onclick="showStoryCard(12)" style="background: linear-gradient(135deg, #a238ff, #ff006e); color: white; border: none;">🌊 Share this Vibe</button>
+        <button class="reply-btn" disabled>🎶 Reply with Song <span class="soon-tag">Soon</span></button>
+    </div>
+    <p style="font-size: 0.75rem; color: #6b7280; margin-top: 1rem; display: flex; align-items: center; justify-content: center; gap: 0.75rem; flex-wrap: wrap;">
+        <a href="/" style="color: #a238ff; text-decoration: underline; cursor: pointer; font-size: 0.75rem;">Explore a new vibe</a>
+        <span style="color: #d1d5db;">•</span>
+        <button onclick="saveVibe(12)" style="background: none; border: none; color: #10b981; text-decoration: underline; cursor: pointer; font-size: 0.75rem;">Save this vibe</button>
+        <span style="color: #d1d5db;">•</span>
+        <a href="#" onclick="openOnYouTube('Daniel Caesar', 'Best Part'); return false;" style="color: #ef4444; text-decoration: none; font-size: 0.75rem; display: flex; align-items: center; gap: 0.25rem;">▶ Listen on YouTube</a>
+    </p>
+    <p style="text-align: center; margin-top: 2rem;">
+        <a href="/" style="color: var(--text-secondary); text-decoration: none; font-weight: 500;">← Back</a>
+    </p>
+</div>
+
+        <div class="footer">
+            <p>🎵 Vibes • Discover music through human stories 🌍</p>
+            <p style="margin-top: 0.5rem; opacity: 0.7;">Created by <a href="mailto:lucasoliberato@gmail.com" style="color: #a238ff; text-decoration: none;">Lucas C. Liberato</a></p>
+            <p style="margin-top: 0.25rem; opacity: 0.6; font-size: 0.875rem;">Copyright © 2025 - All rights reserved</p>
+            <p id="userIndicator" style="margin-top: 0.75rem; opacity: 0.7; font-size: 0.75rem; color: #a238ff;"></p>
+            <p style="margin-top: 1rem; opacity: 0.5; font-size: 0.75rem;">
+                <button onclick="resetAllData()" style="background: none; border: 1px solid #e5e7eb; color: #9ca3af; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.75rem; cursor: pointer;">Reset Demo Data</button>
+                <span style="margin-left: 1rem; opacity: 0.6;">Note: Data saves per user</span>
+            </p>
+        </div>
+    </div>
+
+    <script>
+      const allSongs = [{"artist":"Phoebe Bridgers","song":"Motion Sickness","context":"3am overthinking sessions 🌙","name":"Emma","location":"Portland","votes":0,"id":1,"discovered":false,"genres":["Indie","Rock"]},{"artist":"Iron & Wine","song":"Flightless Bird","context":"Coming-of-age indie movie vibes 🌧","name":"Lucas","location":"São Paulo","votes":89,"id":2,"discovered":false,"genres":["Indie","Folk"]},{"artist":"Clairo","song":"Sofia","context":"Bedroom pop perfection ✨","name":"Sophie","location":"London","votes":12,"id":3,"discovered":false,"genres":["Indie","Pop"]},{"artist":"Frank Ocean","song":"Pink Matter","context":"2am thoughts that hit different 💭","name":"Jordan","location":"LA","votes":23,"id":4,"discovered":false,"genres":["R&B","Alternative"]},{"artist":"Mitski","song":"First Love / Late Spring","context":"Crying aesthetically 🌸","name":"Maya","location":"Tokyo","votes":18,"id":5,"discovered":false,"genres":["Indie","Alternative"]},{"artist":"Mac Miller","song":"Woods","context":"60 seconds of pure introspection 🌲","name":"Alex","location":"Brooklyn","votes":15,"id":6,"discovered":false,"genres":["Hip-Hop","R&B"]},{"artist":"Tyler, The Creator","song":"EARFQUAKE","context":"Sunset driving with no destination 🌅","name":"Carlos","location":"Mexico City","votes":31,"id":7,"discovered":false,"genres":["Hip-Hop","Pop"]},{"artist":"Lorde","song":"Ribs","context":"Growing up anxiety sounds beautiful ⏰","name":"Zoe","location":"Auckland","votes":27,"id":8,"discovered":false,"genres":["Pop","Electronic"]},{"artist":"Rex Orange County","song":"Loving Is Easy","context":"Makes me believe in love again 💕","name":"Riley","location":"Manchester","votes":14,"id":9,"discovered":false,"genres":["Indie","Pop"]},{"artist":"Boy Pablo","song":"Everytime","context":"Summer nostalgia in 3 minutes ☀","name":"Diego","location":"Barcelona","votes":8,"id":10,"discovered":false,"genres":["Indie","Pop"]},{"artist":"Kali Uchis","song":"telepatía","context":"Dreamy bilingual perfection 🌺","name":"Camila","location":"Miami","votes":21,"id":11,"discovered":false,"genres":["R&B","Pop"]},{"artist":"Daniel Caesar","song":"Best Part","context":"Love song that doesn't make me cringe 💝","name":"Marcus","location":"Toronto","votes":19,"id":12,"discovered":false,"genres":["R&B","Soul"]},{"artist":"Brockhampton","song":"SUGAR","context":"Chaos and harmony in perfect balance 🍯","name":"Kai","location":"Austin","votes":13,"id":13,"discovered":false,"genres":["Hip-Hop","Alternative"]},{"artist":"Still Woozy","song":"Goodie Bag","context":"Feels like floating on clouds ☁","name":"Luna","location":"San Francisco","votes":16,"id":14,"discovered":false,"genres":["Indie","Psychedelic"]},{"artist":"Omar Apollo","song":"Ugotme","context":"Bilingual heartbreak hits different 💔","name":"Santiago","location":"Phoenix","votes":11,"id":15,"discovered":false,"genres":["R&B","Funk"]},{"artist":"Cuco","song":"Lo Que Siento","context":"Bedroom pop with abuela's approval 🏠","name":"Valentina","location":"Los Angeles","votes":9,"id":16,"discovered":false,"genres":["Indie","Dream Pop"]}];
+    </script>
+    <script src="/js/main.js"></script>
+    <div class="success-toast" id="successToast"></div>
+</body>
+</html>
